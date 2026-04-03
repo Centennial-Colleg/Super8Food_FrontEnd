@@ -2,7 +2,11 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import MealList from './pages/MealList';
+//import MealList from './pages/MealList';
+import MealList from './meals/MealList';
+import AddMeal from './meals/AddMeal';
+//import EditMeal from './meals/EditMeal';
+
 
 const MainRouter = () => {
   return (
@@ -22,6 +26,7 @@ const MainRouter = () => {
 
         {/* CRUD Route */}
         <Route path="/meals" element={<MealList />} />
+        <Route path="/meals/add" element={<AddMeal />} />
       </Routes>
     </div>
   );

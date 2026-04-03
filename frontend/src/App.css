@@ -12,6 +12,34 @@ nav a {
   font-weight: bold;
 }
 
+
+.nav-logo {
+  height: 40px; /* Adjust height to match your font size */
+  width: auto;
+  border-radius: 50%; /* Optional: keeps the circular look of the logo */
+  vertical-align: middle;
+}
+
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.logout-btn {
+  background: white;
+  color: #2e7d32;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #f0f0f0;
+}
+
 nav a:hover {
   text-decoration: underline;
 }
@@ -24,29 +52,3 @@ nav a:hover {
 }
 
 
-.meal-page {
-  padding: 20px;
-}
-
-h1 {
-  color: #2e7d32;
-  margin-bottom: 30px;
-}
-
-.auth-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background-color: #fafafa;
-}
-
-form input {
-  display: block;
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
