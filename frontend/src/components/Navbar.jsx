@@ -1,21 +1,23 @@
 import { Link } from 'react-router-dom';
 
-function Navbar({ isLoggedIn, handleLogout }) {
+function Navbar() {
+  // We will automate this 'isLoggedIn' logic later
+  const isLoggedIn = true; 
+
   return (
-    <nav style={{ padding: '10px', background: '#f8f8f8', display: 'flex', gap: '15px' }}>
+    <nav style={{ display: 'flex', gap: '20px', padding: '10px', borderBottom: '1px solid #ccc' }}>
       <Link to="/">Home</Link>
+      <Link to="/meals">Menu</Link>
       
       {!isLoggedIn ? (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </>
+        <Link to="/login">Login</Link>
       ) : (
-        <>
-          <Link to="/meals">Meal Plans</Link>
-          <button onClick={handleLogout}>Logout</button>
-        </>
+        <button onClick={() => alert('Logging out...')}>Logout</button>
       )}
+      
+      {!isLoggedIn && <Link to="/register">Register</Link>}
     </nav>
   );
 }
+
+export default Navbar;
