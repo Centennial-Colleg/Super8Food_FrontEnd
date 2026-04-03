@@ -22,3 +22,31 @@ nav a:hover {
   text-align: center;
   font-family: Arial, sans-serif;
 }
+
+
+.meal-page {
+  padding: 20px;
+}
+
+h1 {
+  color: #2e7d32;
+  margin-bottom: 30px;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fafafa;
+}
+
+form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
