@@ -1,3 +1,6 @@
+
+// OrderModel.js reviewed by Mohd Javed Khan – structure verified, no modifications
+
 class OrderModel {
     constructor(
         id = "",
