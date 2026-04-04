@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+
 import logo from '../assets/Super8FoodLogo.jpeg'; 
+import { clearJWT, getUsername, isAuthenticated } from './auth/auth-helper';
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Navbar() {
-  const isLoggedIn = true; 
+  const isLoggedIn = isAuthenticated(); 
+  const navigate = useNavigate();
 
   return (
     <nav>
@@ -17,14 +21,18 @@ function Navbar() {
 
       <Link to="/">Home</Link>
       <Link to="/meals">Menu</Link>
+
+      {isLoggedIn && <a className="welcome-msg">Welcome, {getUsername()}!</a>}
+
       
       {!isLoggedIn ? (
         <Link to="/login">Login</Link>
       ) : (
-        <button className="logout-btn" onClick={() => alert('Logging out...')}>
+        <button className="logout-btn" onClick={() => {clearJWT(); navigate("/")}}>
           Logout
         </button>
       )}
+
       
       {!isLoggedIn && <Link to="/register">Register</Link>}
     </nav>
