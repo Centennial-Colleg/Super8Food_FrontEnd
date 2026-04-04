@@ -1,55 +1,81 @@
 import { useState, useEffect } from "react";
+import { update, getOne } from "../datasource/api-mealplans";
 import { useNavigate, useParams } from "react-router-dom";
-import { read, update } from "../datasource/api-meals"; // You'll need a 'read' function in api-meals
-import MealModel from "../datasource/mealModel";
-import FormMeal from "./FormMeal";
+import MealPlanModel from "../datasource/MealPlanModel";
+import FormMealPlan from "./FormMealPlan";
 
 function EditMeal() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [meal, setMeal] = useState(new MealModel());
+    const [mealPlan, setMealPlan] = useState(new MealPlanModel());
     const [errorMsg, setErrorMsg] = useState('');
 
-    // Load existing meal data
     useEffect(() => {
-        read(id).then((data) => {
-            if (data) {
-                setMeal(data);
-            }
-        }).catch(err => console.error(err));
+        getOne(id)
+            .then((res) => {
+                if (res.success) {
+                    setMealPlan(new MealPlanModel(
+                        res.data.id,
+                        res.data.title,
+                        res.data.description,
+                        res.data.active,
+                        res.data.image,
+                        res.data.cost
+                    ));
+                } else {
+                    alert(res.message);
+                }
+            })
+            .catch((err) => {
+                alert(err.message);
+                console.log(err);
+            });
     }, [id]);
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setMeal((formData) => ({ ...formData, [name]: value }));
+        const { name, value, type, checked } = event.target;
+
+        setMealPlan((formData) => ({
+            ...formData,
+            [name]: type === "checkbox" ? checked : value
+        }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        update(id, meal)
+
+        update({
+            ...mealPlan,
+            cost: parseFloat(mealPlan.cost)
+        }, id)
             .then((res) => {
                 if (res.success) {
-                    alert("Meal Updated Successfully!");
-                    navigate("/meals/list");
+                    alert(res.message);
+                    navigate("/meals");
                 } else {
                     setErrorMsg(res.message);
                 }
             })
             .catch((err) => {
-                setErrorMsg(err.message);
+                alert(err.message);
+                console.log(err);
             });
     };
 
     return (
         <div className="container" style={{ paddingTop: 80 }}>
-            <h1>Edit Meal Item</h1>
-            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
-            <FormMeal 
-                meal={meal}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-            />
+            <div className="row">
+                <div className="offset-md-3 col-md-6">
+                    <h1>Edit Meal Plan</h1>
+                    <p className="flash"><span>{errorMsg}</span></p>
+
+                    <FormMealPlan
+                        mealPlan={mealPlan}
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

@@ -11,9 +11,9 @@ function FormMealPlan({ mealPlan, handleChange, handleSubmit }) {
             />
 
             <input
-                name="Description"
+                name="description"
                 placeholder="Description"
-                value={mealPlan.Description}
+                value={mealPlan.description}
                 onChange={handleChange}
                 required
             />

@@ -1,7 +1,7 @@
 import { getToken } from "../components/auth/auth-helper";
 
 let apiURL = import.meta.env.VITE_APP_APIURL;
-let endpoint = "/api/meal_plan";
+let endpoint = "/api/meal_plan/";
 
 const list = async () => {
     try {
@@ -55,8 +55,8 @@ const update = async (item, id) => {
 
 const remove = async (id) => {
     try {
-        let response = await fetch(apiURL + endpoint + id, {
-            method: 'DELETE',
+        let response = await fetch(apiURL + `/api/meal_plan/disable/` + id, {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
