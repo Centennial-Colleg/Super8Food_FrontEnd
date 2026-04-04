@@ -2,14 +2,14 @@ class MealPlanModel {
     constructor(
         id = "",
         title = "",
-        Description = "",
+        description = "",
         active = true,
         image = "",
         cost = ""
     ) {
         this.id = id;
         this.title = title;
-        this.Description = Description;
+        this.description = description;
         this.active = active;
         this.image = image;
         this.cost = cost;

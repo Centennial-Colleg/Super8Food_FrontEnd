@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { list } from '../datasource/api-mealplans';
 import MealItem from './MealItem';
+import { isAdmin } from "../components/auth/auth-helper";
 
 function MealList() {
     let [mealPlanList, setMealPlanList] = useState([]);
@@ -32,13 +33,15 @@ function MealList() {
     }, []);
 
     return (
-        <div className="container" style={{ paddingTop: 80 }}>
+        <div className="container">
             <h1>Meal Plan List</h1>
 
             <div>
-                <Link to="/meals/add" className="btn btn-primary">
-                    Add a new Meal Plan
-                </Link>
+                {isAdmin() && (
+                    <Link to="/meals/add" className="btn btn-primary">
+                        Add a new Meal Plan
+                    </Link>
+                )}
             </div>
 
             <br /><br />

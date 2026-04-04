@@ -14,7 +14,7 @@ import Home from './pages/Home';
 
 const MainRouter = () => {
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <Routes>
         {/* Home Route */}
         <Route path="/" element={<Home />} />
@@ -32,6 +32,7 @@ const MainRouter = () => {
 
         <Route path="/orders" element={<OrderList />} />
         <Route path="/orders/add" element={<AddOrder />} />
+        <Route path="/orders/add/:id" element={<AddOrder />} />
         <Route path="/orders/edit/:id" element={<EditOrder />} />
       </Routes>
     </div>

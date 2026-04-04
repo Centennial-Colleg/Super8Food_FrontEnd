@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { list } from '../datasource/api-mealplans';
+import '../Home.css';
 
 function Home() {
   const navigate = useNavigate();
@@ -26,60 +27,51 @@ function Home() {
 
   return (
     <div className="meal-page">
-      <h1>Our Weekly Menu</h1>
 
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && meals.length === 0 && <p>No meals available.</p>}
+      <div className="hero">
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <h1 className="hero-title">Delicious Meals, Delivered Weekly</h1>
+          <p className="hero-subtitle">
+            Choose your perfect meal plan and enjoy fresh, hassle-free dining every day.
+          </p>
+        </div>
+      </div>
 
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '20px',
-        justifyContent: 'center'
-      }}>
-        {meals.map((meal) => (
-          <div key={meal.id} style={{
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            padding: '15px',
-            width: '250px',
-            boxShadow: '2px 2px 10px rgba(0,0,0,0.1)'
-          }}>
+      <div className="container content-section">
+        <h2 className="menu-title">Our Weekly Menu</h2>
 
-            {/* IMAGE */}
-            {meal.image && (
-              <img
-                src={meal.image}
-                alt={meal.title}
-                style={{
-                  width: '100%',
-                  height: '150px',
-                  objectFit: 'cover',
-                  borderRadius: '6px',
-                  marginBottom: '10px'
-                }}
-              />
-            )}
+        {isLoading && <p className="text-center">Loading...</p>}
+        {!isLoading && meals.length === 0 && (
+          <p className="text-center">No meals available.</p>
+        )}
 
-            <h3>{meal.title}</h3>
-            <p>{meal.description}</p>
-            <p><strong>${meal.cost}</strong></p>
+        <div className="meal-grid">
+          {meals.map((meal) => (
+            <div key={meal.id} className="meal-card">
 
-            <button onClick={()=> {navigate(`/orders/add?mealPlan=${meal.id}`)}}
-              style={{
-                backgroundColor: '#2e7d32',
-                color: 'white',
-                border: 'none',
-                padding: '5px 10px',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Add to Order
-            </button>
+              {meal.image && (
+                <img
+                  src={meal.image}
+                  alt={meal.title}
+                  className="meal-image"
+                />
+              )}
 
-          </div>
-        ))}
+              <h3>{meal.title}</h3>
+              <p>{meal.description}</p>
+              <p><strong>${meal.cost}</strong></p>
+
+              <button
+                onClick={() => { navigate(`/orders/add/${meal.id}`) }}
+                className="meal-btn"
+              >
+                Add to Order
+              </button>
+
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

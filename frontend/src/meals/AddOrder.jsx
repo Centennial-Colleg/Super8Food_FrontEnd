@@ -25,7 +25,7 @@ function AddOrder() {
             .then((res) => {
                 if (res.success) {
                     alert(res.message + " - id: " + res.data.id);
-                    navigate("/orders/list");
+                    navigate("/orders");
                 } else {
                     setErrorMsg(res.message);
                 }

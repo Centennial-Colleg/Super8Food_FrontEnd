@@ -7,6 +7,11 @@ const authenticate = (token, cb) => {
 
         let payload = jwtDecode(token);
         sessionStorage.setItem("username", payload.username);
+        if(payload.admin){
+            sessionStorage.setItem("admin", "true");
+        }else{
+            sessionStorage.removeItem("admin");
+        }
     }
     cb();
 }
@@ -25,6 +30,13 @@ const getUsername = () => {
     return sessionStorage.getItem("username");
 }
 
+const isAdmin = () => {
+    if (typeof window === "undefined") {
+        return false;
+    }
+    return sessionStorage.getItem("admin") === "true";
+}
+
 const isAuthenticated = () => {
     if (typeof window === "undefined") {
         return false;
@@ -36,7 +48,8 @@ const clearJWT = ()=>{
   if (typeof window !== "undefined") {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('admin');
   }
 }
 
-export { authenticate, getToken, isAuthenticated, getUsername, clearJWT }
+export { authenticate, getToken, isAuthenticated, getUsername, clearJWT , isAdmin}

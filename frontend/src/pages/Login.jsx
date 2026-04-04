@@ -1,15 +1,15 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react"
+import { useState } from "react";
 import { signin } from "../datasource/api-users";
 import { authenticate } from "../components/auth/auth-helper";
 
 function Login() {
 
     const { state } = useLocation();
-    const { from } = state || { from: {pathname: "/"}}
+    const { from } = state || { from: { pathname: "/" } };
 
     let navigate = useNavigate();
-    const [errorMsg, setErrorMsg] = useState('')
+    const [errorMsg, setErrorMsg] = useState('');
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -26,64 +26,115 @@ function Login() {
         signin(user)
             .then((res) => {
                 if (res && res.success) {
-                    
-                    authenticate(res.token, ()=>{
-                        navigate(from, {replace: true});
+                    authenticate(res.token, () => {
+                        navigate(from, { replace: true });
                     });
-                }
-                else {
+                } else {
                     setErrorMsg(res.message);
                 }
             })
             .catch(err => {
                 setErrorMsg(err.message);
-                console.log(err)
+                console.log(err);
             });
     };
 
+    // 👇 autofill demo login
+    const useDemo = (email, password) => {
+        setUser({ email, password });
+    };
+
     return (
-        // -- Content for the Add_Edit page --
         <div className="container" style={{ paddingTop: 80 }}>
             <div className="row">
-                <div className="offset-md-3 col-md-6">
+
+                {/* 🔹 LOGIN FORM */}
+                <div className="col-md-6">
                     <h1>Signin</h1>
                     <p className="flash"><span>{errorMsg}</span></p>
+
                     <form onSubmit={handleSubmit} className="form">
                         <div className="form-group">
-                            <label htmlFor="emailTextField">Email</label>
-                            <input type="text" className="form-control"
-                                id="emailTextField"
+                            <label>Email</label>
+                            <input
+                                type="text"
+                                className="form-control"
                                 placeholder="Enter your email"
                                 name="email"
                                 value={user.email || ''}
                                 onChange={handleChange}
-                                required>
-                            </input>
+                                required
+                            />
                         </div>
+
                         <br />
+
                         <div className="form-group">
-                            <label htmlFor="passowordTextField">Password</label>
-                            <input type="password" className="form-control"
-                                id="passowordTextField"
-                                placeholder=""
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                placeholder="Password"
                                 name="password"
                                 value={user.password || ''}
                                 onChange={handleChange}
-                                required>
-                            </input>
+                                required
+                            />
                         </div>
+
                         <br />
 
                         <button className="btn btn-primary" type="submit">
-                            <i className="fas fa-edit"></i>
                             Submit
                         </button>
-                        &nbsp; &nbsp;
-                        <Link to="/users/signup" style={{ textDecoration: 'none' }}>
-                            <i className="fas fa-user-plus"></i> Sign-up
-                        </Link>
 
+                        &nbsp; &nbsp;
+
+                        <Link to="/register" style={{ textDecoration: 'none' }}>
+                            Sign-up
+                        </Link>
                     </form>
+                </div>
+
+                {/* 🔹 DEMO ACCOUNTS */}
+                <div className="col-md-6">
+                    <h3>Demo Accounts</h3>
+
+                    <div className="card mb-3">
+                        <div className="card-body">
+                            <h5 className="card-title">Customer Account</h5>
+                            <p className="card-text mb-1">
+                                <strong>Email:</strong> test.customer@gmail.com
+                            </p>
+                            <p className="card-text">
+                                <strong>Password:</strong> password1
+                            </p>
+                            <button
+                                className="btn btn-outline-primary btn-sm"
+                                onClick={() => useDemo("test.customer@gmail.com", "password1")}
+                            >
+                                Use Demo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">Admin Account</h5>
+                            <p className="card-text mb-1">
+                                <strong>Email:</strong> admin.user1@gmail.com
+                            </p>
+                            <p className="card-text">
+                                <strong>Password:</strong> password1
+                            </p>
+                            <button
+                                className="btn btn-outline-danger btn-sm"
+                                onClick={() => useDemo("admin.user1@gmail.com", "password1")}
+                            >
+                                Use Demo
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

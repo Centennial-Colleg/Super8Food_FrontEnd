@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { remove } from "../datasource/api-mealplans";
 import { isAuthenticated } from "../components/auth/auth-helper";
+import { isAdmin } from "../components/auth/auth-helper";
 
 function MealItem({ mealPlan, onRemove }) {
+    const navigate = useNavigate();
 
     const handleRemove = (id) => {
         if (!isAuthenticated()) {
@@ -37,19 +39,32 @@ function MealItem({ mealPlan, onRemove }) {
                 )}
             </td>
 
-            <td className="text-center">
-                <Link className="btn btn-primary btn-sm" to={'/meals/edit/' + mealPlan.id}>
-                    ✏️
-                </Link>
-            </td>
+            {isAdmin() && (
+                <td className="text-center">
+                    <Link className="btn btn-primary btn-sm" to={'/meals/edit/' + mealPlan.id}>
+                        ✏️
+                    </Link>
+                </td>
+            )}
 
-            <td className="text-center">
-                <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleRemove(mealPlan.id)}>
-                    🗑️
-                </button>
-            </td>
+            {isAdmin() && (
+                <td className="text-center">
+                    <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleRemove(mealPlan.id)}>
+                        🗑️
+                    </button>
+                </td>
+            )}
+            {!isAdmin() && (
+                <td className="text-center">
+                    <button
+                        className="btn btn-success btn-sm"
+                        onClick={() => navigate(`/orders/add?mealPlan=${mealPlan.id}`)}>
+                        Order Now
+                    </button>
+                </td>
+            )}
         </tr>
     );
 }

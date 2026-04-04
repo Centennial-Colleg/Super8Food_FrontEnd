@@ -2,6 +2,7 @@
 import logo from '../assets/Super8FoodLogo.jpeg'; 
 import { clearJWT, getUsername, isAuthenticated } from './auth/auth-helper';
 import { Link, useNavigate } from "react-router-dom";
+import { isAdmin } from './auth/auth-helper';
 
 
 function Navbar() {
@@ -23,7 +24,7 @@ function Navbar() {
       {!isLoggedIn && <Link to="/meals_public">Menu</Link>}
       {isLoggedIn && <Link to="/meals">Meals</Link>}
       {isLoggedIn && <Link to="/orders">My Orders</Link>}
-      {isLoggedIn && <a className="welcome-msg">Welcome, {getUsername()}!</a>}
+      {isLoggedIn && <a className="welcome-msg">Welcome, {getUsername()} {isAdmin() && <span>(Admin)</span>}!</a>}
 
       
       {!isLoggedIn ? (
