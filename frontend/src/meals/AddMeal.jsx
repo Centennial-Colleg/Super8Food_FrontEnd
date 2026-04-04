@@ -1,42 +1,60 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { create } from "../datasource/api-mealplans";
+import { useNavigate } from "react-router-dom";
+import MealPlanModel from "../datasource/MealPlanModel";
+import FormMealPlan from "./FormMealPlan";
 
-function AddMeal({ onAdd }) {
-  const [meal, setMeal] = useState({ name: '', description: '', price: '' });
+function AddMeal() {
+    const navigate = useNavigate();
+    const [mealPlan, setMealPlan] = useState(new MealPlanModel());
+    const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Pass the new meal data back to the parent (MealList)
-    onAdd({ ...meal, id: Date.now(), price: parseFloat(meal.price) });
-    setMeal({ name: '', description: '', price: '' }); // Reset form
-  };
+    const handleChange = (event) => {
+        const { name, value, type, checked } = event.target;
 
-  return (
-    <div style={{ padding: '15px', border: '1px dashed #2e7d32', marginBottom: '20px' }}>
-      <h3>Add to Super 8 Menu</h3>
-      <form onSubmit={handleSubmit}>
-        <input 
-          placeholder="Name" 
-          value={meal.name} 
-          onChange={(e) => setMeal({...meal, name: e.target.value})} 
-          required 
-        />
-        <input 
-          placeholder="Description" 
-          value={meal.description} 
-          onChange={(e) => setMeal({...meal, description: e.target.value})} 
-          required 
-        />
-        <input 
-          type="number" 
-          placeholder="Price" 
-          value={meal.price} 
-          onChange={(e) => setMeal({...meal, price: e.target.value})} 
-          required 
-        />
-        <button type="submit">Save Meal</button>
-      </form>
-    </div>
-  );
+        setMealPlan((formData) => ({
+            ...formData,
+            [name]: type === "checkbox" ? checked : value
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        create({
+            ...mealPlan,
+            cost: parseFloat(mealPlan.cost)
+        })
+            .then((res) => {
+                if (res.success) {
+                    alert(res.message + " - id: " + res.data.id);
+                    navigate("/mealplans/list");
+                } else {
+                    setErrorMsg(res.message);
+                }
+            })
+            .catch((err) => {
+                alert(err.message);
+                console.log(err);
+            });
+    };
+
+    return (
+        <div className="container" style={{ paddingTop: 80 }}>
+            <div className="row">
+                <div className="offset-md-3 col-md-6">
+                    <h1>Add Meal Plan</h1>
+                    <p className="flash"><span>{errorMsg}</span></p>
+
+                    <FormMealPlan
+                        mealPlan={mealPlan}
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                    />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default AddMeal;

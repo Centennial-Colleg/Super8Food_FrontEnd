@@ -1,68 +1,88 @@
+import { getToken } from "../components/auth/auth-helper";
 
-const API_BASE_URL = "http://localhost:5000/api/meal_plan";
+let apiURL = import.meta.env.VITE_APP_APIURL;
+let endpoint = "/api/meal_plan";
 
+const list = async () => {
+    try {
+        let response = await fetch(apiURL + endpoint, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-export async function listMealPlans() {
-  try {
-    const response = await fetch(`${API_BASE_URL}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching meal plans:", error);
-    return [];
-  }
-}
+const create = async (item) => {
+    try {
+        let response = await fetch(apiURL + endpoint, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
+            body: JSON.stringify(item)
+        });
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-export async function createMealPlan(mealPlan, token) {
-  try {
-    const response = await fetch(`${API_BASE_URL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(mealPlan),
-    });
-    return await response.json();
-  } catch (error) {
-    console.error("Error creating meal plan:", error);
-    return null;
-  }
-}
+const update = async (item, id) => {
+    try {
+        let response = await fetch(apiURL + endpoint + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
+            body: JSON.stringify(item)
+        });
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-export async function updateMealPlan(id, mealPlan, token) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(mealPlan),
-    });
-    return await response.json();
-  } catch (error) {
-    console.error("Error updating meal plan:", error);
-    return null;
-  }
-}
+const remove = async (id) => {
+    try {
+        let response = await fetch(apiURL + endpoint + id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
 
-export async function disableMealPlan(id, token) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/disable/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return await response.json();
-  } catch (error) {
-    console.error("Error disabling meal plan:", error);
-    return null;
-  }
-}
+const getOne = async (id) => {
+    try {
+        let response = await fetch(apiURL + endpoint + id, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export { list, create, update, remove, getOne };
