@@ -5,7 +5,7 @@ import Register from './pages/Register';
 //import MealList from './pages/MealList';
 import MealList from './meals/MealList';
 import AddMeal from './meals/AddMeal';
-//import EditMeal from './meals/EditMeal';
+import EditMeal from './meals/EditMeal';
 
 
 const MainRouter = () => {
@@ -27,6 +27,7 @@ const MainRouter = () => {
         {/* CRUD Route */}
         <Route path="/meals" element={<MealList />} />
         <Route path="/meals/add" element={<AddMeal />} />
+        <Route path="/meals/edit/:id" element={<EditMeal />} />
       </Routes>
     </div>
   );

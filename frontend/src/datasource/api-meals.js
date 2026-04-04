@@ -1,5 +1,5 @@
 // The base URL of your backend (change this once you deploy to Render)
-const baseURL = "http://localhost:3000/api/meals";
+const baseURL = "https://superfood8.onrender.com/";
 
 const create = async (meal) => {
     try {
