@@ -1,0 +1,23 @@
+class OrderModel {
+    constructor(
+        id = "",
+        title = "",
+        description = "",
+        active = true,
+        status = "",
+        deliveryDate = "",
+        completionDate = "",
+        mealPlan = ""
+    ) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.active = active;
+        this.status = status;
+        this.deliveryDate = deliveryDate;
+        this.completionDate = completionDate;
+        this.mealPlan = mealPlan;
+    }
+}
+
+export default OrderModel;

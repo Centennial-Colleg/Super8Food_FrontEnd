@@ -20,8 +20,9 @@ function Navbar() {
       </Link>
 
       <Link to="/">Home</Link>
-      <Link to="/meals">Menu</Link>
-
+      {!isLoggedIn && <Link to="/meals_public">Menu</Link>}
+      {isLoggedIn && <Link to="/meals">Meals</Link>}
+      {isLoggedIn && <Link to="/orders">My Orders</Link>}
       {isLoggedIn && <a className="welcome-msg">Welcome, {getUsername()}!</a>}
 
       

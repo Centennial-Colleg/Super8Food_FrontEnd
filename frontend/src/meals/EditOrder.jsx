@@ -1,26 +1,28 @@
 import { useState, useEffect } from "react";
-import { update, getOne } from "../datasource/api-mealplans";
+import { update, getOne } from "../datasource/api-orders";
 import { useNavigate, useParams } from "react-router-dom";
-import MealPlanModel from "../datasource/MealPlanModel";
-import FormMealPlan from "./FormMealPlan";
+import OrderModel from "../datasource/OrderModel";
+import FormOrder from "./FormOrder";
 
-function EditMeal() {
+function EditOrder() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [mealPlan, setMealPlan] = useState(new MealPlanModel());
+    const [order, setOrder] = useState(new OrderModel());
     const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
         getOne(id)
             .then((res) => {
                 if (res.success) {
-                    setMealPlan(new MealPlanModel(
+                    setOrder(new OrderModel(
                         res.data.id,
                         res.data.title,
                         res.data.description,
                         res.data.active,
-                        res.data.image,
-                        res.data.cost
+                        res.data.status,
+                        res.data.deliveryDate,
+                        res.data.completionDate,
+                        res.data.mealPlan
                     ));
                 } else {
                     alert(res.message);
@@ -35,7 +37,7 @@ function EditMeal() {
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
 
-        setMealPlan((formData) => ({
+        setOrder((formData) => ({
             ...formData,
             [name]: type === "checkbox" ? checked : value
         }));
@@ -44,14 +46,11 @@ function EditMeal() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        update({
-            ...mealPlan,
-            cost: parseFloat(mealPlan.cost)
-        }, id)
+        update(order, id)
             .then((res) => {
                 if (res.success) {
                     alert(res.message);
-                    navigate("/meals");
+                    navigate("/orders/list");
                 } else {
                     setErrorMsg(res.message);
                 }
@@ -63,21 +62,12 @@ function EditMeal() {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="offset-md-3 col-md-6">
-                    <h1>Edit Meal Plan</h1>
-                    <p className="flash"><span>{errorMsg}</span></p>
-
-                    <FormMealPlan
-                        mealPlan={mealPlan}
-                        handleChange={handleChange}
-                        handleSubmit={handleSubmit}
-                    />
-                </div>
-            </div>
-        </div>
+        <FormOrder
+            order={order}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+        />
     );
 }
 
-export default EditMeal;
+export default EditOrder;

@@ -45,10 +45,13 @@ nav a:hover {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 80%;
   margin: 40px auto;
   text-align: center;
   font-family: Arial, sans-serif;
 }
 
+#root{
+  width: 100%;
+}
 

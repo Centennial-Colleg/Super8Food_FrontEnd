@@ -6,6 +6,10 @@ import Register from './pages/Register';
 import MealList from './meals/MealList';
 import AddMeal from './meals/AddMeal';
 import EditMeal from './meals/EditMeal';
+import OrderList from './meals/OrderList';
+import AddOrder from './meals/AddOrder';
+import EditOrder from './meals/EditOrder';
+import Home from './pages/Home';
 
 
 const MainRouter = () => {
@@ -13,12 +17,9 @@ const MainRouter = () => {
     <div style={{ padding: '20px' }}>
       <Routes>
         {/* Home Route */}
-        <Route path="/" element={
-          <div>
-            <h1>Welcome to Super 8 Food</h1>
-            <p>Group 8 - Weekly Meal Delivery Project</p>
-          </div>
-        } />
+        <Route path="/" element={<Home />} />
+        <Route path="/meals_public" element={<Home />} />
+
 
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
@@ -28,6 +29,10 @@ const MainRouter = () => {
         <Route path="/meals" element={<MealList />} />
         <Route path="/meals/add" element={<AddMeal />} />
         <Route path="/meals/edit/:id" element={<EditMeal />} />
+
+        <Route path="/orders" element={<OrderList />} />
+        <Route path="/orders/add" element={<AddOrder />} />
+        <Route path="/orders/edit/:id" element={<EditOrder />} />
       </Routes>
     </div>
   );

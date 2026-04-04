@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { create } from "../datasource/api-mealplans";
+import { create } from "../datasource/api-orders";
 import { useNavigate } from "react-router-dom";
-import MealPlanModel from "../datasource/MealPlanModel";
-import FormMealPlan from "./FormMealPlan";
+import OrderModel from "../datasource/OrderModel";
+import FormOrder from "./FormOrder";
 
-function AddMeal() {
+function AddOrder() {
     const navigate = useNavigate();
-    const [mealPlan, setMealPlan] = useState(new MealPlanModel());
+    const [order, setOrder] = useState(new OrderModel());
     const [errorMsg, setErrorMsg] = useState('');
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
 
-        setMealPlan((formData) => ({
+        setOrder((formData) => ({
             ...formData,
             [name]: type === "checkbox" ? checked : value
         }));
@@ -21,14 +21,11 @@ function AddMeal() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        create({
-            ...mealPlan,
-            cost: parseFloat(mealPlan.cost)
-        })
+        create(order)
             .then((res) => {
                 if (res.success) {
                     alert(res.message + " - id: " + res.data.id);
-                    navigate("/mealplans/list");
+                    navigate("/orders/list");
                 } else {
                     setErrorMsg(res.message);
                 }
@@ -43,11 +40,11 @@ function AddMeal() {
         <div className="container">
             <div className="row">
                 <div className="offset-md-3 col-md-6">
-                    <h1>Add Meal Plan</h1>
+                    <h1>Add Order</h1>
                     <p className="flash"><span>{errorMsg}</span></p>
 
-                    <FormMealPlan
-                        mealPlan={mealPlan}
+                    <FormOrder
+                        order={order}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                     />
@@ -57,4 +54,4 @@ function AddMeal() {
     );
 }
 
-export default AddMeal;
+export default AddOrder;
