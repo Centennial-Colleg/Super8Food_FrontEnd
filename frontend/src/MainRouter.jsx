@@ -6,9 +6,9 @@ import Register from './pages/Register';
 import MealList from './meals/MealList';
 import AddMeal from './meals/AddMeal';
 import EditMeal from './meals/EditMeal';
-import OrderList from './meals/OrderList';
-import AddOrder from './meals/AddOrder';
-import EditOrder from './meals/EditOrder';
+import OrderList from './orders/OrderList';
+import AddOrder from './orders/AddOrder';
+import EditOrder from './orders/EditOrder';
 import Home from './pages/Home';
 import PrivateRoute from './components/auth/PrivateRoute';
 

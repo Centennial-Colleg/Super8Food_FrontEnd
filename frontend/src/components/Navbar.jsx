@@ -17,8 +17,7 @@ function Navbar() {
 
       <div className="nav-right">
         <Link to="/">Home</Link>
-        {!isLoggedIn && <Link to="/meals_public">Menu</Link>}
-        {isLoggedIn && <Link to="/meals">Meals</Link>}
+        <Link to="/meals">Meals</Link>
         {isLoggedIn && <Link to="/orders">My Orders</Link>}
 
         {isLoggedIn && (

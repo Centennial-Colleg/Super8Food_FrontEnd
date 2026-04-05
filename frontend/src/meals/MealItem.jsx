@@ -60,7 +60,7 @@ function MealItem({ mealPlan, onRemove }) {
                 <td className="text-center">
                     <button
                         className="btn btn-success btn-sm"
-                        onClick={() => navigate(`/orders/add?mealPlan=${mealPlan.id}`)}>
+                        onClick={() => navigate(`/orders/add/${mealPlan.id}`)}>
                         Order Now
                     </button>
                 </td>
