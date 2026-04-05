@@ -50,7 +50,7 @@ function EditOrder() {
             .then((res) => {
                 if (res.success) {
                     alert(res.message);
-                    navigate("/orders/list");
+                    navigate("/orders");
                 } else {
                     setErrorMsg(res.message);
                 }

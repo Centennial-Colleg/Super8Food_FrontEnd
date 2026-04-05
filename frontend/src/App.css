@@ -61,3 +61,71 @@ nav a:hover {
     border-radius: 10px;
     box-shadow: 0px 5px 5px #ddd;
 }
+
+.navbar {
+  background-color: #2e7d32;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.nav-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-right a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-right a:hover {
+  text-decoration: underline;
+}
+
+.welcome-msg {
+  color: white;
+  font-weight: normal;
+}
+
+.logout-btn {
+  background: white;
+  color: #2e7d32;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #f0f0f0;
+}
