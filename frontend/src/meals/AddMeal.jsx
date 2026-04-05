@@ -28,7 +28,7 @@ function AddMeal() {
             .then((res) => {
                 if (res.success) {
                     alert(res.message + " - id: " + res.data.id);
-                    navigate("/mealplans/list");
+                    navigate("/meals");
                 } else {
                     setErrorMsg(res.message);
                 }
