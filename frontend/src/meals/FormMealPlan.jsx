@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 function FormMealPlan({ mealPlan, handleChange, handleSubmit }) {
     return (
         <div className="container" style={{ width: "100%" }}>
@@ -90,6 +92,10 @@ function FormMealPlan({ mealPlan, handleChange, handleSubmit }) {
                             Save Meal Plan
                         </button>
 
+                        <Link href="#" to="/meals" className="btn btn-warning">
+                            <i className="fas fa-undo"></i>
+                            Cancel
+                        </Link>
                     </form>
                 </div>
             </div>

@@ -10,6 +10,7 @@ import OrderList from './meals/OrderList';
 import AddOrder from './meals/AddOrder';
 import EditOrder from './meals/EditOrder';
 import Home from './pages/Home';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 
 const MainRouter = () => {
@@ -27,13 +28,37 @@ const MainRouter = () => {
 
         {/* CRUD Route */}
         <Route path="/meals" element={<MealList />} />
-        <Route path="/meals/add" element={<AddMeal />} />
-        <Route path="/meals/edit/:id" element={<EditMeal />} />
+        <Route path="/meals/add" element={
+          <PrivateRoute>
+            <AddMeal />
+          </PrivateRoute>
+        } />
+        <Route path="/meals/edit/:id" element={
+          <PrivateRoute>
+            <EditMeal />
+          </PrivateRoute>
+        } />
 
-        <Route path="/orders" element={<OrderList />} />
-        <Route path="/orders/add" element={<AddOrder />} />
-        <Route path="/orders/add/:id" element={<AddOrder />} />
-        <Route path="/orders/edit/:id" element={<EditOrder />} />
+        <Route path="/orders" element={
+          <PrivateRoute>
+            <OrderList />
+          </PrivateRoute>
+        } />
+        <Route path="/orders/add" element={
+          <PrivateRoute>
+            <AddOrder />
+          </PrivateRoute>
+        } />
+        <Route path="/orders/add/:id" element={
+          <PrivateRoute>
+            <AddOrder />
+          </PrivateRoute>
+        } />
+        <Route path="/orders/edit/:id" element={
+          <PrivateRoute>
+            <EditOrder />
+          </PrivateRoute>
+        } />
       </Routes>
     </div>
   );

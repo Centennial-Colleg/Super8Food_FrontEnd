@@ -120,7 +120,7 @@ const Register = () => {
                             Submit
                         </button>
                         &nbsp; &nbsp;
-                        <Link href="#" to="/users/signin" className="btn btn-warning">
+                        <Link href="#" to="/" className="btn btn-warning">
                             <i className="fas fa-undo"></i>
                             Cancel
                         </Link>
