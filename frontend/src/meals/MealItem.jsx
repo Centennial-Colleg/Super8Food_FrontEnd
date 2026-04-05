@@ -10,7 +10,7 @@ function MealItem({ mealPlan, onRemove }) {
         if (!isAuthenticated()) {
             alert("User is not authenticated.");
         } else {
-            if (window.confirm('Are you sure you want to delete this item?')) {
+            if (window.confirm('Are you sure you want to disable this item?')) {
                 remove(id)
                     .then(res => {
                         if (res && res.success) {

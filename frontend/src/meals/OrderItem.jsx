@@ -4,7 +4,7 @@ import { remove } from "../datasource/api-orders";
 function OrderItem({ order, onRemove }) {
 
     const handleRemove = (id) => {
-        if (window.confirm('Delete this order?')) {
+        if (window.confirm('Cancel this order?')) {
             remove(id).then(res => {
                 if (res.success) onRemove();
             });
