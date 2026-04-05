@@ -1,5 +1,5 @@
 .hero {
-  background-image: url('https://img.freepik.com/free-photo/top-view-circular-food-frame_23-2148723455.jpg');
+  background-image: url('./assets/hero.jpg');
   background-size: cover;
   background-position: center;
   height: 350px;
