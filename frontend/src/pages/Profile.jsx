@@ -1,3 +1,15 @@
+/**
+ * Allows the authenticated user to view and update their
+ * profile information such as name, email, and username.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { useState, useEffect } from 'react';
 import { getProfile, updateProfile } from '../datasource/api-users';
 

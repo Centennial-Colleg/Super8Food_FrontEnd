@@ -1,3 +1,15 @@
+/**
+ * Displays the list of meal plans. Admins see all plans with
+ * management options; regular users see only active plans.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { list, listActive } from '../datasource/api-mealplans';

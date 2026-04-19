@@ -1,3 +1,15 @@
+/**
+ * Form to create a new order for the authenticated user,
+ * optionally pre-filled with a meal plan selected from the homepage.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { useState, useEffect } from "react";
 import { create } from "../datasource/api-orders";
 import { useNavigate, useParams } from "react-router-dom";

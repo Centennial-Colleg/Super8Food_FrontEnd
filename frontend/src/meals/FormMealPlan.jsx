@@ -1,3 +1,14 @@
+/**
+ * Reusable form component shared by AddMeal and EditMeal
+ * for meal plan data entry including image URL and active toggle.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
 
 import { Link } from "react-router-dom";
 function FormMealPlan({ mealPlan, handleChange, handleSubmit }) {

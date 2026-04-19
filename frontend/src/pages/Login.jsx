@@ -1,3 +1,15 @@
+/**
+ * User login page with email and password form.
+ * Stores the JWT token on success and redirects to the originally requested page.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { signin } from "../datasource/api-users";

@@ -1,3 +1,15 @@
+/**
+ * Top navigation bar with links to all major pages. Conditionally
+ * renders links and labels based on authentication state and admin role.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import logo from '../assets/Super8FoodLogo.jpeg'; 
 import { clearJWT, getUsername, isAuthenticated, isAdmin } from './auth/auth-helper';
 import { Link, useNavigate } from "react-router-dom";

@@ -1,3 +1,15 @@
+/**
+ * New user registration form for creating an account
+ * with username, email, and password.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { create } from "../datasource/api-users";

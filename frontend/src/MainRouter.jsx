@@ -1,3 +1,15 @@
+/**
+ * Defines all client-side routes for the application, mapping paths
+ * to page and feature components with PrivateRoute protection where required.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';

@@ -1,3 +1,15 @@
+/**
+ * Renders a single order row in the orders table with role-based
+ * action buttons: Edit/Cancel for users, Change Status for admins.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { Link } from "react-router-dom";
 import { remove } from "../datasource/api-orders";
 import { isAdmin } from "../components/auth/auth-helper";

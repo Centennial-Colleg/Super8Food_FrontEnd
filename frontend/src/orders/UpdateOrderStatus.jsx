@@ -1,3 +1,17 @@
+/**
+ * Allows an admin user to update the status of any order.
+ * Fetches the order by ID using admin privileges and presents
+ * a dropdown to set the status to Pending, Confirmed, Preparing,
+ * Delivered, or Cancelled.
+ * 
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getOneAdmin, updateStatus } from '../datasource/api-orders';

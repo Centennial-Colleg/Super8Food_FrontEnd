@@ -1,3 +1,15 @@
+/**
+ * Reusable form component shared by AddOrder and EditOrder
+ * for order data entry, including meal plan selection and delivery date.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { list as listMealPlans } from "../datasource/api-mealplans";

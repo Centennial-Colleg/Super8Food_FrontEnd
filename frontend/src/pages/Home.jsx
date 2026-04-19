@@ -1,3 +1,15 @@
+/**
+ * Public-facing landing page displaying active meal plans
+ * available for ordering, with a hero section and meal grid.
+ *
+ * Developers:
+ *  - Mohd Javed Khan      - 301523744
+ *  - Brian Nubila         - 301514904
+ *  - Osamahiemen Idemudia - 301476106
+ *  - Andrelle Thompson    - 301519338
+ *  - Adib Md. Mahin       - 301424034
+ */
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { listActive } from '../datasource/api-mealplans';
