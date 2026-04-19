@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { list } from '../datasource/api-mealplans';
+import { list, listActive } from '../datasource/api-mealplans';
 import MealItem from './MealItem';
 import { isAdmin } from "../components/auth/auth-helper";
 
@@ -9,7 +9,9 @@ function MealList() {
     let [isLoading, setIsLoading] = useState(true);
 
     const loadMealPlans = () => {
-        list()
+        console.log(isAdmin());
+        const fetcher = isAdmin() ? list : listActive;
+        fetcher()
             .then((res) => {
                 if (res.success) {
                     setMealPlanList(res.data);

@@ -85,4 +85,20 @@ const getOne = async (id) => {
     }
 };
 
-export { list, create, update, remove, getOne };
+const listActive = async () => {
+    try {
+        let response = await fetch(apiURL + endpoint + 'active', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { list, create, update, listActive, remove, getOne };
