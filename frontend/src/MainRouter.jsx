@@ -9,6 +9,7 @@ import EditMeal from './meals/EditMeal';
 import OrderList from './orders/OrderList';
 import AddOrder from './orders/AddOrder';
 import EditOrder from './orders/EditOrder';
+import UpdateOrderStatus from './orders/UpdateOrderStatus';
 import Home from './pages/Home';
 import History from './pages/History';
 import Profile from './pages/Profile';
@@ -60,6 +61,11 @@ const MainRouter = () => {
         <Route path="/orders/edit/:id" element={
           <PrivateRoute>
             <EditOrder />
+          </PrivateRoute>
+        } />
+        <Route path="/orders/status/:id" element={
+          <PrivateRoute>
+            <UpdateOrderStatus />
           </PrivateRoute>
         } />
         <Route path="/history" element={

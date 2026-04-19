@@ -19,7 +19,7 @@ function Navbar() {
         <Link to="/">Home</Link>
         {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
         <Link to="/meals">Meals</Link>
-        {isLoggedIn && <Link to="/orders">My Orders</Link>}
+        {isLoggedIn && <Link to="/orders">{isAdmin() ? 'All Orders' : 'My Orders'}</Link>}
         {isLoggedIn && <Link to="/history">My History</Link>}
         {isLoggedIn && !isAdmin() && <Link to="/profile">My Profile</Link>}
 

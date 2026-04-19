@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { list } from '../datasource/api-orders';
+import { list, listAdmin } from '../datasource/api-orders';
 import OrderItem from './OrderItem';
+import { isAdmin } from '../components/auth/auth-helper';
 
 function OrderList() {
     let [orderList, setOrderList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
 
     const loadOrders = () => {
-        list()
+        const fetcher = isAdmin() ? listAdmin : list;
+        fetcher()
             .then((res) => {
                 if (res.success) {
                     setOrderList(res.data);
@@ -33,12 +35,14 @@ function OrderList() {
 
     return (
         <div className="container" style={{ paddingTop: 80 }}>
-            <h1>Order List</h1>
+            <h1>{isAdmin() ? 'All Orders' : 'My Orders'}</h1>
 
             <div>
-                <Link to="/orders/add" className="btn btn-primary">
-                    Add a new Order
-                </Link>
+                {!isAdmin() && (
+                    <Link to="/orders/add" className="btn btn-primary">
+                        Add a new Order
+                    </Link>
+                )}
             </div>
 
             <br /><br />
@@ -57,7 +61,7 @@ function OrderList() {
                                 <th className="text-center">Delivery</th>
                                 <th className="text-center">Completion</th>
                                 <th className="text-center">Active</th>
-                                <th className="text-center" colSpan="2">Actions</th>
+                                <th className="text-center" colSpan={isAdmin() ? "3" : "2"}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

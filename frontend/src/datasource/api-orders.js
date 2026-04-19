@@ -88,4 +88,53 @@ const getOne = async (id) => {
     }
 };
 
-export { list, create, update, remove, getOne };
+const updateStatus = async (id, status) => {
+    try {
+        let response = await fetch(apiURL + endpoint + 'status/' + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            },
+            body: JSON.stringify({ status })
+        });
+        return await response.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const listAdmin = async () => {
+    try {
+        let response = await fetch(apiURL + endpoint + 'admin', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const getOneAdmin = async (id) => {
+    try {
+        let response = await fetch(apiURL + endpoint + 'admin/' + id, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
+            }
+        });
+        return await response.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export { list, listAdmin, create, update, updateStatus, remove, getOne, getOneAdmin };

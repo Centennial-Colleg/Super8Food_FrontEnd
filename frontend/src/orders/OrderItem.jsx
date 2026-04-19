@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { remove } from "../datasource/api-orders";
+import { isAdmin } from "../components/auth/auth-helper";
 
 function OrderItem({ order, onRemove }) {
 
@@ -36,13 +37,26 @@ function OrderItem({ order, onRemove }) {
             <td>{order.completionDate}</td>
             <td>{order.active ? "Yes" : "No"}</td>
 
-            <td>
-                <Link to={'/orders/edit/' + order.id}>✏️</Link>
-            </td>
-
-            <td>
-                <button onClick={() => handleRemove(order.id)}>🗑️</button>
-            </td>
+            {isAdmin() ? (
+                <td>
+                    <Link to={'/orders/status/' + order.id} className="btn btn-sm btn-warning">
+                        Change Status
+                    </Link>
+                </td>
+            ) : (
+                <>
+                    <td>
+                        <Link to={'/orders/edit/' + order.id} className="btn btn-sm btn-primary">
+                            Edit
+                        </Link>
+                    </td>
+                    <td>
+                        <button className="btn btn-sm btn-danger" onClick={() => handleRemove(order.id)}>
+                            Cancel
+                        </button>
+                    </td>
+                </>
+            )}
         </tr>
     );
 }

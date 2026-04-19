@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { list } from '../datasource/api-mealplans';
+import { listActive } from '../datasource/api-mealplans';
 import '../Home.css';
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    list()
+    listActive()
       .then((res) => {
         if (res.success) {
           setMeals(res.data);
