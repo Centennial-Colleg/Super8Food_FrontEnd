@@ -11,11 +11,27 @@ function OrderItem({ order, onRemove }) {
         }
     };
 
+    const getStatusBadge = (status) => {
+        const statusClasses = {
+            'Pending': 'badge bg-warning text-dark',
+            'Confirmed': 'badge bg-success',
+            'Preparing': 'badge bg-info',
+            'Delivered': 'badge bg-primary',
+            'Cancelled': 'badge bg-danger'
+        };
+
+        return statusClasses[status] || 'badge bg-secondary';
+    };
+
     return (
         <tr>
             <td>{order.title}</td>
             <td>{order.description}</td>
-            <td>{order.status}</td>
+            <td>
+                <span className={getStatusBadge(order.status)}>
+                    {order.status}
+                </span>
+            </td>
             <td>{order.deliveryDate}</td>
             <td>{order.completionDate}</td>
             <td>{order.active ? "Yes" : "No"}</td>

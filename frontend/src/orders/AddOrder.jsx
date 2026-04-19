@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { create } from "../datasource/api-orders";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import OrderModel from "../datasource/OrderModel";
 import FormOrder from "./FormOrder";
 
 function AddOrder() {
     const navigate = useNavigate();
+    const { id } = useParams(); // Get meal plan ID from URL
     const [order, setOrder] = useState(new OrderModel());
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -47,6 +48,7 @@ function AddOrder() {
                         order={order}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
+                        preselectedMealPlanId={id}
                     />
                 </div>
             </div>

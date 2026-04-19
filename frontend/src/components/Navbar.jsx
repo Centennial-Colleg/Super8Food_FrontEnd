@@ -18,7 +18,10 @@ function Navbar() {
       <div className="nav-right">
         <Link to="/">Home</Link>
         <Link to="/meals">Meals</Link>
+        {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
         {isLoggedIn && <Link to="/orders">My Orders</Link>}
+        {isLoggedIn && <Link to="/history">My History</Link>}
+        {isLoggedIn && <Link to="/profile">My Profile</Link>}
 
         {isLoggedIn && (
           <span className="welcome-msg">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+//import MealList from './pages/MealList';
 import MealList from './meals/MealList';
 import AddMeal from './meals/AddMeal';
 import EditMeal from './meals/EditMeal';
@@ -11,7 +12,9 @@ import EditOrder from './orders/EditOrder';
 import Home from './pages/Home';
 import History from './pages/History';
 import Profile from './pages/Profile';
+import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/auth/PrivateRoute';
+
 
 const MainRouter = () => {
   return (
@@ -21,11 +24,12 @@ const MainRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/meals_public" element={<Home />} />
 
+
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* CRUD Routes */}
+        {/* CRUD Route */}
         <Route path="/meals" element={<MealList />} />
         <Route path="/meals/add" element={
           <PrivateRoute>
@@ -58,8 +62,6 @@ const MainRouter = () => {
             <EditOrder />
           </PrivateRoute>
         } />
-
-        {/* User Pages */}
         <Route path="/history" element={
           <PrivateRoute>
             <History />
@@ -68,6 +70,11 @@ const MainRouter = () => {
         <Route path="/profile" element={
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        } />
+        <Route path="/dashboard" element={
+          <PrivateRoute>
+            <Dashboard />
           </PrivateRoute>
         } />
       </Routes>

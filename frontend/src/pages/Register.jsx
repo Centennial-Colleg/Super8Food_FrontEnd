@@ -35,8 +35,8 @@ const Register = () => {
         }
     };
 
-    // "firstname": "Jane1",
-    // "lastname": "Blane1",
+    // "firstName": "Jane1",
+    // "lastName": "Blane1",
     // "email": "Jane1.Blane2@dailyplanet.com",    
     // "password": "12345678",
     // "username": "jane1.blane2"
@@ -53,20 +53,20 @@ const Register = () => {
                             <input type="text" className="form-control"
                                 id="firstNameTextField"
                                 placeholder="Enter first name"
-                                name="firstname"
-                                value={user.firstname || ''}
+                                name="firstName"
+                                value={user.firstName || ''}
                                 onChange={handleChange}
                                 required>
                             </input>
                         </div>
                         <br />
                         <div className="form-group">
-                            <label htmlFor="lastNameTextField">lastName</label>
+                            <label htmlFor="lastNameTextField">Last Name</label>
                             <input type="text" className="form-control"
                                 id="lastNameTextField"
                                 placeholder="Enter last name"
-                                name="lastname"
-                                value={user.lastname || ''}
+                                name="lastName"
+                                value={user.lastName || ''}
                                 onChange={handleChange}>
                             </input>
                         </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { list as listMealPlans } from "../datasource/api-mealplans";
 
-function FormOrder({ order, handleChange, handleSubmit }) {
+function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId }) {
 
     const [mealPlans, setMealPlans] = useState([]);
     const [selectedCost, setSelectedCost] = useState("");
@@ -16,6 +16,26 @@ function FormOrder({ order, handleChange, handleSubmit }) {
             .then(res => {
                 if (res.success) {
                     setMealPlans(res.data);
+
+                    // If we have a preselected meal plan ID, set it
+                    if (preselectedMealPlanId) {
+                        const preselected = res.data.find(mp => mp.id === preselectedMealPlanId);
+                        if (preselected) {
+                            handleChange({
+                                target: { name: "mealPlan", value: preselectedMealPlanId }
+                            });
+
+                            handleChange({
+                                target: { name: "title", value: preselected.title }
+                            });
+
+                            handleChange({
+                                target: { name: "description", value: preselected.description }
+                            });
+
+                            setSelectedCost(preselected.cost);
+                        }
+                    }
                 }
             })
             .catch(err => console.log(err));
@@ -28,7 +48,7 @@ function FormOrder({ order, handleChange, handleSubmit }) {
             target: { name: "completionDate", value: getToday() }
         });
 
-    }, []);
+    }, [preselectedMealPlanId]);
 
     const handleMealPlanChange = (event) => {
         const selectedId = event.target.value;
@@ -47,6 +67,17 @@ function FormOrder({ order, handleChange, handleSubmit }) {
             });
 
             setSelectedCost(selected.cost);
+        } else {
+            // Clear fields if no meal plan selected
+            handleChange({
+                target: { name: "title", value: "" }
+            });
+
+            handleChange({
+                target: { name: "description", value: "" }
+            });
+
+            setSelectedCost("");
         }
     };
 
