@@ -54,7 +54,7 @@ function MealItem({ mealPlan, onRemove }) {
             {isAdmin() && (
                 <td className="text-center">
                     <Link className="btn btn-primary btn-sm" to={'/meals/edit/' + mealPlan.id}>
-                        ✏️
+                        Edit
                     </Link>
                 </td>
             )}
@@ -64,7 +64,7 @@ function MealItem({ mealPlan, onRemove }) {
                     <button
                         className="btn btn-danger btn-sm"
                         onClick={() => handleRemove(mealPlan.id)}>
-                        🗑️
+                        Delete
                     </button>
                 </td>
             )}

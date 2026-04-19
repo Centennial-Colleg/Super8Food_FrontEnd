@@ -49,6 +49,8 @@ function OrderItem({ order, onRemove }) {
             <td>{order.completionDate}</td>
             <td>{order.active ? "Yes" : "No"}</td>
 
+            {isAdmin() && <td>{order.user?.username || '-'}</td>}
+
             {isAdmin() ? (
                 <td>
                     <Link to={'/orders/status/' + order.id} className="btn btn-sm btn-warning">

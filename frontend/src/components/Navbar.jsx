@@ -29,7 +29,7 @@ function Navbar() {
 
       <div className="nav-right">
         <Link to="/">Home</Link>
-        {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
+        {isLoggedIn && !isAdmin() && <Link to="/dashboard">Dashboard</Link>}
         <Link to="/meals">Meals</Link>
         {isLoggedIn && <Link to="/orders">{isAdmin() ? 'All Orders' : 'My Orders'}</Link>}
         {isLoggedIn && <Link to="/history">My History</Link>}

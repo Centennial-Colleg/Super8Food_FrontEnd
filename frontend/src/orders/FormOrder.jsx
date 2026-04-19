@@ -181,6 +181,7 @@ function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId })
                                 name="deliveryDate"
                                 value={order.deliveryDate}
                                 onChange={handleChange}
+                                min={getToday()}
                                 required
                             />
                         </div>
@@ -195,19 +196,11 @@ function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId })
 
                         <br />
 
-                        <div className="form-group form-check">
-                            <input
-                                type="checkbox"
-                                className="form-check-input"
-                                id="activeField"
-                                name="active"
-                                checked={order.active}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label" htmlFor="activeField">
-                                Active
-                            </label>
-                        </div>
+                        <input
+                            type="hidden"
+                            name="active"
+                            value={order.active ?? true}
+                        />
 
                         <br />
 
