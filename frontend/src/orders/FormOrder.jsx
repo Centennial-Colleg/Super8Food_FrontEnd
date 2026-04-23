@@ -12,7 +12,7 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { list as listMealPlans } from "../datasource/api-mealplans";
+import { listActive as listMealPlans } from "../datasource/api-mealplans";
 
 function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId }) {
 
@@ -53,7 +53,7 @@ function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId })
             .catch(err => console.log(err));
 
         handleChange({
-            target: { name: "status", value: "Confirmed" }
+            target: { name: "status", value: "Pending" }
         });
 
         handleChange({
@@ -169,7 +169,7 @@ function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId })
                         <input
                             type="hidden"
                             name="status"
-                            value={order.status || "Confirmed"}
+                            value={order.status || "Pending"}
                         />
 
                         <div className="form-group">
