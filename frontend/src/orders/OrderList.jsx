@@ -74,6 +74,7 @@ function OrderList() {
                                 <th className="text-center">Completion</th>
                                 <th className="text-center">Active</th>
                                 {isAdmin() && <th className="text-center">User</th>}
+                                {isAdmin() && <th className="text-center">Address</th>}
                                 <th className="text-center" colSpan={isAdmin() ? "3" : "2"}>Actions</th>
                             </tr>
                         </thead>

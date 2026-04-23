@@ -173,6 +173,22 @@ function FormOrder({ order, handleChange, handleSubmit, preselectedMealPlanId })
                         />
 
                         <div className="form-group">
+                            <label htmlFor="addressField">Delivery Address</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="addressField"
+                                name="address"
+                                value={order.address}
+                                onChange={handleChange}
+                                placeholder="Enter delivery address"
+                                required
+                            />
+                        </div>
+
+                        <br />
+
+                        <div className="form-group">
                             <label htmlFor="deliveryDateField">Delivery Date</label>
                             <input
                                 type="date"

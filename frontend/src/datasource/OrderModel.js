@@ -10,7 +10,8 @@ class OrderModel {
         status = "",
         deliveryDate = "",
         completionDate = "",
-        mealPlan = ""
+        mealPlan = "",
+        address = ""
     ) {
         this.id = id;
         this.title = title;
@@ -20,6 +21,7 @@ class OrderModel {
         this.deliveryDate = deliveryDate;
         this.completionDate = completionDate;
         this.mealPlan = mealPlan;
+        this.address = address;
     }
 }
 

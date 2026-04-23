@@ -50,6 +50,7 @@ function OrderItem({ order, onRemove }) {
             <td>{order.active ? "Yes" : "No"}</td>
 
             {isAdmin() && <td>{order.user?.username || '-'}</td>}
+            {isAdmin() && <td>{order.address || '-'}</td>}
 
             {isAdmin() ? (
                 <td>

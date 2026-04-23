@@ -34,7 +34,8 @@ function EditOrder() {
                         res.data.status,
                         res.data.deliveryDate,
                         res.data.completionDate,
-                        res.data.mealPlan
+                        res.data.mealPlan,
+                        res.data.address
                     ));
                 } else {
                     alert(res.message);
